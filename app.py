@@ -45,9 +45,9 @@ def main():
     PhysHlth = st.slider('Physical illness in past 30 days', 0.0, 30.0)
     DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
 
-    diabetes_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
+    diabetes_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
 
-    heart_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
+    heart_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
     
     if st.button('Predict Diabetes'):
         diabetes_prediction = predict_diabetes([diabetes_features])
