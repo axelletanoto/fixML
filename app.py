@@ -1,9 +1,9 @@
 import streamlit as st
 import pickle
 
-diabetes_model = pickle.load(open('diabetes_model1.sav'))
+diabetes_model = pickle.load(open('diabetes_model1.sav', 'rb'))
 
-heart_model = pickle.load(open('heart_model1.sav'))
+heart_model = pickle.load(open('heart_model1.sav', 'rb'))
 
 def predict_diabetes(features):
     prediction = diabetes_model.predict(features)
