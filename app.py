@@ -1,12 +1,9 @@
 import streamlit as st
 import pickle
 
+diabetes_model = pickle.load(open('diabetes_model1.sav', 'rb'))
 
-with open('diabetes_model1.sav.gz', 'rb') as f:
-    diabetes_model = pickle.load(f)
-
-with open('heart_model1.sav.gz', 'rb') as f:
-    heart_model = pickle.load(f)
+heart_model = pickle.load(open('heart_model1.sav', 'rb'))
 
 def predict_diabetes(features):
     prediction = diabetes_model.predict(features)
@@ -42,8 +39,8 @@ def main():
     Smoker = st.radio('Smoker', ['No', 'Yes'])
     Stroke = st.radio('Stroke', ['No', 'Yes'])
     PhysActivity = st.radio('Physical Activity in past 30 days', ['No', 'Yes'])
-    Fruits = st.number_input('Consume fruits 1 or more times per day')
-    Veggies = st.number_input('Vegetables 1 or more times per day')
+    Fruits = st.radio('Consume fruits 1 or more times per day', ['No', 'Yes'])
+    Veggies = st.radio('Vegetables 1 or more times per day', ['No', 'Yes'])
     HvyAlcoholConsump = st.radio('Heavy Alcohol Consumption', ['No', 'Yes'])
     AnyHealthcare = st.radio('Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc', ['No', 'Yes'])
     NoDocbcCost = st.radio('Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?', ['No', 'Yes'])
@@ -52,17 +49,17 @@ def main():
     PhysHlth = st.slider('Physical illness in past 30 days', 0.0, 30.0)
     DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
 
-    diabetes_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthCare, NoDocbCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
+    diabetes_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
 
-    heart_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthCare, NoDocbCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
+    heart_features = [Age, Sex, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk]
     
     if st.button('Predict Diabetes'):
-        diabetes_prediction = predict_diabetes([diabetes_features])
-        st.success(st.write(f'Diabetes Prediction: {diabetes_prediction}'))
+        diabetes_prediction = predict_diabetes(diabetes_features)
+        st.success(f'Diabetes Prediction: {diabetes_prediction}')
 
     if st.button('Predict Heart Disease'):
-        heart_prediction = predict_heart_disease([heart_features])
-        st.success(st.write(f'Heart Disease Prediction: {heart_prediction}'))
+        heart_prediction = predict_heart_disease(heart_features)
+        st.success(f'Heart Disease Prediction: {heart_prediction}')
 
 if __name__ == '__main__':
     main()
