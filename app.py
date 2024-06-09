@@ -1,13 +1,6 @@
 import streamlit as st
 import pickle
 
-
-with open('diabetes_model1.sav.gz', 'rb') as f:
-    diabetes_model = pickle.load(f)
-
-with open('heart_model1.sav.gz', 'rb') as f:
-    heart_model = pickle.load(f)
-
 def predict_diabetes(features):
     prediction = diabetes_model.predict(features)
     return prediction
