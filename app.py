@@ -51,11 +51,11 @@ def main():
     
     if st.button('Predict Diabetes'):
         diabetes_prediction = predict_diabetes([diabetes_features])
-        st.success(st.write(f'Diabetes Prediction: {diabetes_prediction}'))
+        st.success(f'Diabetes Prediction: {diabetes_prediction}')
 
     if st.button('Predict Heart Disease'):
         heart_prediction = predict_heart_disease([heart_features])
-        st.success(st.write(f'Heart Disease Prediction: {heart_prediction}'))
+        st.success(f'Heart Disease Prediction: {heart_prediction}')
 
 if __name__ == '__main__':
     main()
