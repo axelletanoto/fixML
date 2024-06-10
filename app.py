@@ -32,18 +32,9 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
-    col1, col2 = st.columns(2)
-    with col1:
-        st.header('Age (1st Half)')
-        Age = st.radio('Select your age range:', list(age_mapping.keys())[:len(age_mapping)//2])
-        
-    with col2:
-        st.header('Age (2nd Half)')
-        Age_2nd_half = st.radio('Select your age range:', list(age_mapping.keys())[len(age_mapping)//2:])
     
-    # Set Age to None if the second half is selected
-    if Age_2nd_half:
-        Age = None
+    st.header('Age')
+        Age = st.radio('Select your age range:', list(age_mapping.keys()))
 
     st.header('Sex/Gender')
     Sex = st.radio('Select your gender:', ['Female', 'Male'])
