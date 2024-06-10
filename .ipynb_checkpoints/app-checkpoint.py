@@ -32,7 +32,7 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
-    ol1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
     with col1:
         st.header('Age (1st Half)')
         Age = st.radio('Select your age range:', list(age_mapping.keys())[:len(age_mapping)//2])
