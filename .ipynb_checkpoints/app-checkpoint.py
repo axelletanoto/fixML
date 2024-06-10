@@ -7,12 +7,12 @@ diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
 
 heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
-def predict_diabetes(features_df):
-    prediction = diabetes_model.predict(features_df)
+def predict_diabetes(features):
+    prediction = diabetes_model.predict(features)
     return prediction
 
-def predict_heart_disease(features_df):
-    prediction = heart_model.predict(features_df)
+def predict_heart_disease(features):
+    prediction = heart_model.predict(features)
     return prediction
 
 def main():
@@ -66,38 +66,36 @@ def main():
     gen_hlth_mapping = {'Excellent': 1, 'Very Good': 2, 'Good': 3, 'Fair': 4, 'Poor': 5}
     diff_walk_mapping = {'No': 0, 'Yes': 1}
 
-    features_dict = {
-        'Age': [Age],
-        'Sex': [sex_mapping[Sex]],
-        'HighBP': [high_bp_mapping[HighBP]],
-        'HighChol': [high_chol_mapping[HighChol]],
-        'CholCheck': [chol_check_mapping[CholCheck]],
-        'BMI': [BMI],
-        'Smoker': [smoker_mapping[Smoker]],
-        'Stroke': [stroke_mapping[Stroke]],
-        'PhysActivity': [phys_activity_mapping[PhysActivity]],
-        'Fruits': [fruits_mapping[Fruits]],
-        'Veggies': [veggies_mapping[Veggies]],
-        'HvyAlcoholConsump': [hvy_alcohol_mapping[HvyAlcoholConsump]],
-        'AnyHealthcare': [healthcare_mapping[AnyHealthcare]],
-        'NoDocbcCost': [no_doc_cost_mapping[NoDocbcCost]],
-        'GenHlth': [gen_hlth_mapping[GenHlth]],
-        'MentHlth': [MentHlth],
-        'PhysHlth': [PhysHlth],
-        'DiffWalk': [diff_walk_mapping[DiffWalk]]
-    }
-
-    features_df = pd.DataFrame(features_dict)
+     features = np.array([
+        age_mapping[Age],
+        sex_mapping[Sex],
+        high_bp_mapping[HighBP],
+        high_chol_mapping[HighChol],
+        chol_check_mapping[CholCheck],
+        BMI,
+        smoker_mapping[Smoker],
+        stroke_mapping[Stroke],
+        phys_activity_mapping[PhysActivity],
+        fruits_mapping[Fruits],
+        veggies_mapping[Veggies],
+        hvy_alcohol_mapping[HvyAlcoholConsump],
+        healthcare_mapping[AnyHealthcare],
+        no_doc_cost_mapping[NoDocbcCost],
+        gen_hlth_mapping[GenHlth],
+        MentHlth,
+        PhysHlth,
+        diff_walk_mapping[DiffWalk]
+    ]).reshape(1, -1)
     
     if st.button('Predict Diabetes'):
-        diabetes_prediction = predict_diabetes(features_df)
+        diabetes_prediction = predict_diabetes(features)
         result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
-        st.success(f'Diabetes Prediction: {diabetes_prediction[0] * 100:.2f}%')
+        st.success(f'Diabetes Prediction: {result}')
 
     if st.button('Predict Heart Disease'):
-        heart_prediction = predict_heart_disease(features_df)
+        heart_prediction = predict_heart_disease(features)
         result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
-        st.success(f'Heart Disease Prediction: {heart_prediction[0] * 100:.2f}%')
+        st.success(f'Heart Disease Prediction: {result}')
 
 if __name__ == '__main__':
     main()
