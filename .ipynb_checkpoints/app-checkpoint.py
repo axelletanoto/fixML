@@ -66,7 +66,7 @@ def main():
     gen_hlth_mapping = {'Excellent': 1, 'Very Good': 2, 'Good': 3, 'Fair': 4, 'Poor': 5}
     diff_walk_mapping = {'No': 0, 'Yes': 1}
 
-     features = np.array([
+    features = np.array([
         age_mapping[Age],
         sex_mapping[Sex],
         high_bp_mapping[HighBP],
