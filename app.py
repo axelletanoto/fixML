@@ -1,24 +1,37 @@
 import streamlit as st
 import pickle
 import numpy as np
-import pandas as pd
 
-diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
-
-heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
+# Load models
+try:
+    diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
+    heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
+except Exception as e:
+    st.error(f"Error loading model: {e}")
 
 def predict_diabetes(features):
-    if hasattr(diabetes_model, "predict_proba"):
-        prediction = diabetes_model.predict_proba(features)
-        return prediction[0][1]
+    try:
+        if hasattr(diabetes_model, "predict_proba"):
+            prediction = diabetes_model.predict_proba(features)
+            return prediction[0][1]
+        else:
+            st.error("Diabetes model does not support 'predict_proba' method.")
+    except Exception as e:
+        st.error(f"Error during diabetes prediction: {e}")
 
 def predict_heart_disease(features):
-    if hasattr(heart_model, "predict_proba"):
-        prediction = heart_model.predict_proba(features)
-        return prediction[0][1]
+    try:
+        if hasattr(heart_model, "predict_proba"):
+            prediction = heart_model.predict_proba(features)
+            return prediction[0][1]
+        else:
+            st.error("Heart disease model does not support 'predict_proba' method.")
+    except Exception as e:
+        st.error(f"Error during heart disease prediction: {e}")
 
 def main():
     st.title('Diabetes and Heart Disease Prediction')
+
     age_mapping = {
         '18-24': 1,
         '25-29': 2,
@@ -34,6 +47,7 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
+
     Age = st.radio('Age', list(age_mapping.keys()))
     Sex = st.radio('Sex', ['Female', 'Male'])
     HighBP = st.radio('High BP', ['No', 'Yes'])
@@ -53,6 +67,7 @@ def main():
     PhysHlth = st.slider('Physical illness in past 30 days', 0.0, 30.0)
     DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
 
+    # Mapping user input to model features
     sex_mapping = {'Female': 0, 'Male': 1}
     high_bp_mapping = {'No': 0, 'Yes': 1}
     high_chol_mapping = {'No': 0, 'Yes': 1}
@@ -101,6 +116,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-    
-    
