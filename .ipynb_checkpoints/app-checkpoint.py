@@ -32,6 +32,9 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
+
+    col1, col2 = st.columns([1, 3])
+    
     with col1:
         st.header('Age')
         Age = st.radio('Select your age range:', list(age_mapping.keys()))
