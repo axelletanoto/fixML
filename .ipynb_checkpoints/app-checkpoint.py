@@ -34,7 +34,7 @@ def main():
     }
     
     st.header('Age')
-        Age = st.radio('Select your age range:', list(age_mapping.keys()))
+    Age = st.radio('Select your age range:', list(age_mapping.keys()))
 
     st.header('Sex/Gender')
     Sex = st.radio('Select your gender:', ['Female', 'Male'])
