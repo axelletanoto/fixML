@@ -32,7 +32,7 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
-    Age = st.radio('Age Category', list(age_mapping.keys()), format_func=lambda x: age_mapping[x])
+    Age = st.radio('Age Category', list(age_mapping.keys()))
     Sex = st.radio('Sex', ['Female', 'Male'])
     HighBP = st.radio('High BP', ['No', 'Yes'])
     HighChol = st.radio('High Cholesterol', ['No', 'Yes'])
