@@ -8,11 +8,11 @@ diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
 heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
 def predict_diabetes(features_df):
-    prediction = diabetes_model.predict(features_df)[:,1]
+    prediction = diabetes_model.predict(features_df)
     return prediction
 
 def predict_heart_disease(features_df):
-    prediction = heart_model.predict(features_df)[:,1]
+    prediction = heart_model.predict(features_df)
     return prediction
 
 def main():
