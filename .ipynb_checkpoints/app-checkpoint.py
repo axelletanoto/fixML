@@ -49,7 +49,7 @@ def main():
     HighBP = st.radio('Do you have high blood pressure?', ['No', 'Yes'])
 
     st.header('High Cholestrol')
-    HighChol = st.radio('Do you have high choloestrol?', ['No', 'Yes'])
+    HighChol = st.radio('Do you have high cholestrol?', ['No', 'Yes'])
 
     st.header('Cholestrol Check')
     CholCheck = st.radio('Have you had a cholesterol check in the last 5 years?', ['No', 'Yes'])
@@ -129,15 +129,15 @@ def main():
         diff_walk_mapping[DiffWalk]
     ]).reshape(1, -1)
     
-    if st.button('Predict Diabetes'):
-        diabetes_prediction = predict_diabetes(features)
-        result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
-        st.success(f'Diabetes Prediction: {result}')
-
-    if st.button('Predict Heart Disease'):
-        heart_prediction = predict_heart_disease(features)
-        result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
-        st.success(f'Heart Disease Prediction: {result}')
+    if st.button('Predict Diabetes and Heart Disease'):
+    diabetes_prediction = predict_diabetes(features)
+    heart_prediction = predict_heart_disease(features)
+    
+    diabetes_result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
+    heart_result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
+    
+    st.success(f'Diabetes Prediction: {diabetes_result}')
+    st.success(f'Heart Disease Prediction: {heart_result}')
 
 if __name__ == '__main__':
     main()
