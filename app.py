@@ -73,7 +73,7 @@ def main():
     Veggies = st.radio('Do you consume vegetables 1 or more times per day?', ['No', 'Yes'])
     
     st.header("Heavy Alcohol Consumption")
-    HvyAlcoholConsump = st.radio('Do you engage in heavy alcohol consumption? [Adult Men > 14 drinks per week][Adult Women > 7 drinks per week],', ['No', 'Yes'])
+    HvyAlcoholConsump = st.radio('Do you engage in heavy alcohol consumption? [Adult Men > 14 drinks per week][Adult Women > 7 drinks per week]', ['No', 'Yes'])
 
     st.header("Health Care Coverage")
     AnyHealthcare = st.radio('Do you have any kind of health care coverage?', ['No', 'Yes'])
