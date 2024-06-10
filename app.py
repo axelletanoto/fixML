@@ -8,11 +8,11 @@ diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
 heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
 def predict_diabetes(features_df):
-    prediction = diabetes_model.predict_proba(features_df)[:,1]
+    prediction = diabetes_model.predict(features_df)[:,1]
     return prediction
 
 def predict_heart_disease(features_df):
-    prediction = heart_model.predict_proba(features_df)[:,1]
+    prediction = heart_model.predict(features_df)[:,1]
     return prediction
 
 def main():
@@ -91,10 +91,12 @@ def main():
     
     if st.button('Predict Diabetes'):
         diabetes_prediction = predict_diabetes(features_df)
+        result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
         st.success(f'Diabetes Prediction: {diabetes_prediction[0] * 100:.2f}%')
 
     if st.button('Predict Heart Disease'):
         heart_prediction = predict_heart_disease(features_df)
+        result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
         st.success(f'Heart Disease Prediction: {heart_prediction[0] * 100:.2f}%')
 
 if __name__ == '__main__':
