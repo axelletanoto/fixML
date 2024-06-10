@@ -8,12 +8,12 @@ diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
 heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
 def predict_diabetes(features):
-    if hasttr(diabetes_model, "predict_proba"):
+    if hasattr(diabetes_model, "predict_proba"):
         prediction = diabetes_model.predict_proba(features)
         return prediction[0][1]
 
 def predict_heart_disease(features):
-    if hasttr(heart_model, "predict_proba"):
+    if hasattr(heart_model, "predict_proba"):
         prediction = heart_model.predict_proba(features)
         return prediction[0][1]
 
