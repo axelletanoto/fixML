@@ -129,7 +129,7 @@ def main():
         diff_walk_mapping[DiffWalk]
     ]).reshape(1, -1)
     
-    if st.button('Predict Diabetes and Heart Disease'):
+    if st.button('Check My Health Conditions'):
         diabetes_prediction = predict_diabetes(features)
         heart_prediction = predict_heart_disease(features)
     
@@ -138,6 +138,20 @@ def main():
     
         st.success(f'Diabetes Prediction: {diabetes_result}')
         st.success(f'Heart Disease Prediction: {heart_result}')
+
+        if diabetes_prediction[0] == 1:
+            st.write("It seems that diabetes is detected. Here are some suggestions:")
+            st.write("- Consult with your healthcare provider for further evaluation and management.")
+            st.write("- Follow a balanced diet and maintain a healthy weight.")
+            st.write("- Engage in regular physical activity.")
+            st.write("- Monitor your blood sugar levels regularly.")
+        
+        if heart_prediction[0] == 1:
+            st.write("It seems that heart disease is detected. Here are some suggestions:")
+            st.write("- Consult with your healthcare provider for further evaluation and management.")
+            st.write("- Follow a heart-healthy diet low in saturated fats, cholesterol, and sodium.")
+            st.write("- Engage in regular physical activity, as recommended by your healthcare provider.")
+            st.write("- Monitor your blood pressure and cholesterol levels regularly.")
 
 if __name__ == '__main__':
     main()
