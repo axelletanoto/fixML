@@ -18,19 +18,19 @@ def predict_heart_disease(features):
 def main():
     st.title('Diabetes and Heart Disease Prediction')
     age_mapping = {
-        1: '18-24',
-        2: '25-29',
-        3: '30-34',
-        4: '35-39',
-        5: '40-44',
-        6: '45-49',
-        7: '50-54',
-        8: '55-59',
-        9: '60-64',
-        10: '65-69',
-        11: '70-74',
-        12: '75-79',
-        13: '80 or older'
+        '18-24': 1,
+        '25-29': 2,
+        '30-34': 3,
+        '35-39': 4,
+        '40-44': 5,
+        '45-49': 6,
+        '50-54': 7,
+        '55-59': 8,
+        '60-64': 9,
+        '65-69': 10,
+        '70-74': 11,
+        '75-79': 12,
+        '80 or older': 13
     }
     Age = st.radio('Age Category', list(age_mapping.keys()), format_func=lambda x: age_mapping[x])
     Sex = st.radio('Sex', ['Female', 'Male'])
