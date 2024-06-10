@@ -36,7 +36,8 @@ def main():
         unsafe_allow_html=True
     )
 
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
+    
     with col1:
         st.header('Age')
         Age = st.radio('Select your age range:', list(age_mapping.keys()))
@@ -47,6 +48,7 @@ def main():
         st.header('High Blood Pressure')
         HighBP = st.radio('Do you have high blood pressure?', ['No', 'Yes'])
 
+    with col2:
         st.header('High Cholesterol')
         HighChol = st.radio('Do you have high cholesterol?', ['No', 'Yes'])
 
@@ -56,16 +58,19 @@ def main():
         st.header("Body Mass Index (BMI)")
         BMI = st.slider('Select your BMI:', 12.0, 98.0)
 
+    with col3:
         st.header("Smoker")
         Smoker = st.radio('Are you a smoker?', ['No', 'Yes'])
 
-    with col2:
         st.header("Stroke")
         Stroke = st.radio('Have you had a stroke?', ['No', 'Yes'])
 
         st.header("Physical Activity")
         PhysActivity = st.radio('Have you engaged in physical activity in the past 30 days?', ['No', 'Yes'])
 
+    col4, col5, col6 = st.columns(3)
+    
+    with col4:
         st.header("Fruits Consumption")
         Fruits = st.radio('Do you consume fruits 1 or more times per day?', ['No', 'Yes'])
 
@@ -75,6 +80,7 @@ def main():
         st.header("Heavy Alcohol Consumption")
         HvyAlcoholConsump = st.radio('Do you engage in heavy alcohol consumption?', ['No', 'Yes'])
 
+    with col5:
         st.header("Health Care Coverage")
         AnyHealthcare = st.radio('Do you have any kind of health care coverage?', ['No', 'Yes'])
 
@@ -84,6 +90,7 @@ def main():
         st.header("General Health")
         GenHlth = st.radio('Rate your general health:', ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor'])
 
+    with col6:
         st.header("Days of Poor Mental Health")
         MentHlth = st.slider('How many days of poor mental health have you experienced in the past 30 days?', 0.0, 30.0)
 
