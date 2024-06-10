@@ -145,6 +145,8 @@ def main():
             st.write("- Follow a balanced diet and maintain a healthy weight.")
             st.write("- Engage in regular physical activity.")
             st.write("- Monitor your blood sugar levels regularly.")
+        else:
+            st.write("Excellent! You're less likely to develop diabetes; continue maintaining your healthy lifestyle!")
         
         if heart_prediction[0] == 1:
             st.write("It seems that heart disease is detected. Here are some suggestions:")
@@ -152,6 +154,8 @@ def main():
             st.write("- Follow a heart-healthy diet low in saturated fats, cholesterol, and sodium.")
             st.write("- Engage in regular physical activity, as recommended by your healthcare provider.")
             st.write("- Monitor your blood pressure and cholesterol levels regularly.")
+        else:
+            st.write("Fantastic! You're unlikely to develop heart disease; keep maintaining your healthy lifestyle!")
 
 if __name__ == '__main__':
     main()
