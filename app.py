@@ -130,14 +130,14 @@ def main():
     ]).reshape(1, -1)
     
     if st.button('Predict Diabetes and Heart Disease'):
-    diabetes_prediction = predict_diabetes(features)
-    heart_prediction = predict_heart_disease(features)
+        diabetes_prediction = predict_diabetes(features)
+        heart_prediction = predict_heart_disease(features)
     
-    diabetes_result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
-    heart_result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
+        diabetes_result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
+        heart_result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
     
-    st.success(f'Diabetes Prediction: {diabetes_result}')
-    st.success(f'Heart Disease Prediction: {heart_result}')
+        st.success(f'Diabetes Prediction: {diabetes_result}')
+        st.success(f'Heart Disease Prediction: {heart_result}')
 
 if __name__ == '__main__':
     main()
