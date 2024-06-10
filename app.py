@@ -32,24 +32,61 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
-    Age = st.radio('Age', list(age_mapping.keys()))
-    Sex = st.radio('Sex', ['Female', 'Male'])
-    HighBP = st.radio('High BP', ['No', 'Yes'])
-    HighChol = st.radio('High Cholesterol', ['No', 'Yes'])
-    CholCheck = st.radio('Cholesterol in 5 years', ['No', 'Yes'])
-    BMI = st.slider('BMI', 12.0, 98.0)
-    Smoker = st.radio('Smoker', ['No', 'Yes'])
-    Stroke = st.radio('Stroke', ['No', 'Yes'])
-    PhysActivity = st.radio('Physical Activity in past 30 days', ['No', 'Yes'])
-    Fruits = st.radio('Consume fruits 1 or more times per day', ['No', 'Yes'])
-    Veggies = st.radio('Vegetables 1 or more times per day', ['No', 'Yes'])
-    HvyAlcoholConsump = st.radio('Heavy Alcohol Consumption', ['No', 'Yes'])
-    AnyHealthcare = st.radio('Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc', ['No', 'Yes'])
-    NoDocbcCost = st.radio('Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?', ['No', 'Yes'])
-    GenHlth = st.radio('General Health', ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor'])
-    MentHlth = st.slider('Days of poor mental health [1-30]', 0.0, 30.0)
-    PhysHlth = st.slider('Physical illness in past 30 days', 0.0, 30.0)
-    DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
+    with col1:
+        st.header('Age')
+        Age = st.radio('Select your age range:', list(age_mapping.keys()))
+    
+    with col2:
+        st.header('Sex/Gender')
+        Sex = st.radio('Select your gender:', ['Female', 'Male'])
+    
+        st.header('High Blood Pressure')
+        HighBP = st.radio('Do you have high blood pressure?', ['No', 'Yes'])
+    
+        st.header('High Cholestrol')
+        HighChol = st.radio('Do you have high choloestrol?', ['No', 'Yes'])
+    
+        st.header('Cholestrol Check')
+        CholCheck = st.radio('Have you had a cholesterol check in the last 5 years?', ['No', 'Yes'])
+    
+        st.header("Body Mass Index (BMI)")
+        BMI = st.slider('Select your BMI:', 12.0, 98.0)
+    
+        st.header("Smoker")
+        Smoker = st.radio('Are you a smoker?', ['No', 'Yes'])
+    
+        st.header("Stroke")
+        Stroke = st.radio('Have you had a stroke?', ['No', 'Yes'])
+    
+        st.header("Physical Activity")
+        PhysActivity = st.radio('Have you engaged in physical activity in the past 30 days?', ['No', 'Yes'])
+    
+        st.header("Fruits Consumption")
+        Fruits = st.radio('Do you consume fruits 1 or more times per day?', ['No', 'Yes'])
+    
+        st.header("Vegetables Consumption")
+        Veggies = st.radio('Do you consume vegetables 1 or more times per day?', ['No', 'Yes'])
+        
+        st.header("Heavy Alcohol Consumption")
+        HvyAlcoholConsump = st.radio('Do you engage in heavy alcohol consumption? [Adult Men > 14 drinks per week][Adult Women > 7 drinks per week],', ['No', 'Yes'])
+    
+        st.header("Health Care Coverage")
+        AnyHealthcare = st.radio('Do you have any kind of health care coverage?', ['No', 'Yes'])
+    
+        st.header("Unable to See a Doctor Due to Cost")
+        NoDocbcCost = st.radio('Have you been unable to see a doctor due to cost in the past 12 months?', ['No', 'Yes'])
+        
+        st.header("General Health")
+        GenHlth = st.radio('Rate your general health:', ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor'])
+        
+        st.header("Days of Poor Mental Health")
+        MentHlth = st.slider('How many days of poor mental health have you experienced in the past 30 days?', 0.0, 30.0)
+    
+        st.header("Physical Illness")
+        PhysHlth = st.slider('How many days have you experienced physical illness in the past 30 days?', 0.0, 30.0)
+    
+        st.header("Difficulty Walking or Climbing Stairs")
+        DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
 
     sex_mapping = {'Female': 0, 'Male': 1}
     high_bp_mapping = {'No': 0, 'Yes': 1}
