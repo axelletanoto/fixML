@@ -36,7 +36,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.header('Age')
@@ -68,8 +68,6 @@ def main():
         st.header("Physical Activity")
         PhysActivity = st.radio('Have you engaged in physical activity in the past 30 days?', ['No', 'Yes'])
 
-    col4, col5, col6 = st.columns(3)
-    
     with col4:
         st.header("Fruits Consumption")
         Fruits = st.radio('Do you consume fruits 1 or more times per day?', ['No', 'Yes'])
@@ -80,10 +78,12 @@ def main():
         st.header("Heavy Alcohol Consumption")
         HvyAlcoholConsump = st.radio('Do you engage in heavy alcohol consumption?', ['No', 'Yes'])
 
-    with col5:
         st.header("Health Care Coverage")
         AnyHealthcare = st.radio('Do you have any kind of health care coverage?', ['No', 'Yes'])
 
+    col5, col6, col7, col8 = st.columns(4)
+    
+    with col5:
         st.header("Unable to See a Doctor Due to Cost")
         NoDocbcCost = st.radio('Have you been unable to see a doctor due to cost in the past 12 months?', ['No', 'Yes'])
 
@@ -97,6 +97,7 @@ def main():
         st.header("Physical Illness")
         PhysHlth = st.slider('How many days have you experienced physical illness in the past 30 days?', 0.0, 30.0)
 
+    with col7:
         st.header("Difficulty Walking or Climbing Stairs")
         DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
 
