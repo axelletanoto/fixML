@@ -17,6 +17,12 @@ def predict_heart_disease(features):
 
 def main():
     st.title('Diabetes and Heart Disease Prediction')
+    st.write("""
+## How to Use:
+1. Select your age range, gender, and answer various health-related questions.
+2. Adjust sliders and radio buttons based on your health information.
+3. Once you've filled in all the details, click the buttons to predict diabetes or heart disease.
+""")
     age_mapping = {
         '18-24': 1,
         '25-29': 2,
