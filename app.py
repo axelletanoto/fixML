@@ -8,12 +8,14 @@ diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
 heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
 def predict_diabetes(features):
-    prediction = diabetes_model.predict_proba(features)
-    return prediction[0][1]
+    if hasttr(diabetes_model, "predict_proba"):
+        prediction = diabetes_model.predict_proba(features)
+        return prediction[0][1]
 
 def predict_heart_disease(features):
-    prediction = heart_model.predict_proba(features)
-    return prediction[0][1]
+    if hasttr(heart_model, "predict_proba"):
+        prediction = heart_model.predict_proba(features)
+        return prediction[0][1]
 
 def main():
     st.title('Diabetes and Heart Disease Prediction')
@@ -89,11 +91,13 @@ def main():
     
     if st.button('Predict Diabetes'):
         diabetes_prediction = predict_diabetes(features)
-        st.success(f'Diabetes Risk: {diabetes_probability*100:.2f}%')
+        if diabetes_prediction is not None:
+            st.success(f'Diabetes Risk: {diabetes_probability*100:.2f}%')
 
     if st.button('Predict Heart Disease'):
         heart_prediction = predict_heart_disease(features)
-        st.success(f'Heart Disease Risk: {heart_probability*100:.2f}%')
+        if heart_prediction is not None:
+            st.success(f'Heart Disease Risk: {heart_probability*100:.2f}%')
 
 if __name__ == '__main__':
     main()
