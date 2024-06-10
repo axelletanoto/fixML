@@ -90,13 +90,13 @@ def main():
     ]).reshape(1, -1)
     
     if st.button('Predict Diabetes'):
-        diabetes_prediction = predict_diabetes(features)
-        if diabetes_prediction is not None:
+        diabetes_probability = predict_diabetes(features)
+        if diabetes_probability is not None:
             st.success(f'Diabetes Risk: {diabetes_probability*100:.2f}%')
 
     if st.button('Predict Heart Disease'):
-        heart_prediction = predict_heart_disease(features)
-        if heart_prediction is not None:
+        heart_probability = predict_heart_disease(features)
+        if heart_probability is not None:
             st.success(f'Heart Disease Risk: {heart_probability*100:.2f}%')
 
 if __name__ == '__main__':
