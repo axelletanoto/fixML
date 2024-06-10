@@ -8,12 +8,12 @@ diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
 heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
 def predict_diabetes(features):
-    prediction = diabetes_model.predict(features)
-    return prediction
+    prediction = diabetes_model.predict_proba(features)
+    return prediction[0][1]
 
 def predict_heart_disease(features):
-    prediction = heart_model.predict(features)
-    return prediction
+    prediction = heart_model.predict_proba(features)
+    return prediction[0][1]
 
 def main():
     st.title('Diabetes and Heart Disease Prediction')
@@ -32,7 +32,7 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
-    Age = st.radio('Age Category', list(age_mapping.keys()))
+    Age = st.radio('Age', list(age_mapping.keys()))
     Sex = st.radio('Sex', ['Female', 'Male'])
     HighBP = st.radio('High BP', ['No', 'Yes'])
     HighChol = st.radio('High Cholesterol', ['No', 'Yes'])
@@ -89,13 +89,11 @@ def main():
     
     if st.button('Predict Diabetes'):
         diabetes_prediction = predict_diabetes(features)
-        result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
-        st.success(f'Diabetes Prediction: {result}')
+        st.success(f'Diabetes Risk: {diabetes_probability*100:.2f}%')
 
     if st.button('Predict Heart Disease'):
         heart_prediction = predict_heart_disease(features)
-        result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
-        st.success(f'Heart Disease Prediction: {result}')
+        st.success(f'Heart Disease Risk: {heart_probability*100:.2f}%')
 
 if __name__ == '__main__':
     main()
