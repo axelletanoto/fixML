@@ -1,37 +1,22 @@
 import streamlit as st
 import pickle
 import numpy as np
+import pandas as pd
 
-# Load models
-try:
-    diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
-    heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
-except Exception as e:
-    st.error(f"Error loading model: {e}")
+diabetes_model = pickle.load(open('dia_mod.pkl', 'rb'))
+
+heart_model = pickle.load(open('heart_mod.pkl', 'rb'))
 
 def predict_diabetes(features):
-    try:
-        if hasattr(diabetes_model, "predict_proba"):
-            prediction = diabetes_model.predict_proba(features)
-            return prediction[0][1]
-        else:
-            st.error("Diabetes model does not support 'predict_proba' method.")
-    except Exception as e:
-        st.error(f"Error during diabetes prediction: {e}")
+    prediction = diabetes_model.predict(features)
+    return prediction
 
 def predict_heart_disease(features):
-    try:
-        if hasattr(heart_model, "predict_proba"):
-            prediction = heart_model.predict_proba(features)
-            return prediction[0][1]
-        else:
-            st.error("Heart disease model does not support 'predict_proba' method.")
-    except Exception as e:
-        st.error(f"Error during heart disease prediction: {e}")
+    prediction = heart_model.predict(features)
+    return prediction
 
 def main():
     st.title('Diabetes and Heart Disease Prediction')
-
     age_mapping = {
         '18-24': 1,
         '25-29': 2,
@@ -47,7 +32,6 @@ def main():
         '75-79': 12,
         '80 or older': 13
     }
-
     Age = st.radio('Age', list(age_mapping.keys()))
     Sex = st.radio('Sex', ['Female', 'Male'])
     HighBP = st.radio('High BP', ['No', 'Yes'])
@@ -67,7 +51,6 @@ def main():
     PhysHlth = st.slider('Physical illness in past 30 days', 0.0, 30.0)
     DiffWalk = st.radio('Do you have serious difficulty walking or climbing stairs?', ['No', 'Yes'])
 
-    # Mapping user input to model features
     sex_mapping = {'Female': 0, 'Male': 1}
     high_bp_mapping = {'No': 0, 'Yes': 1}
     high_chol_mapping = {'No': 0, 'Yes': 1}
@@ -105,14 +88,17 @@ def main():
     ]).reshape(1, -1)
     
     if st.button('Predict Diabetes'):
-        diabetes_probability = predict_diabetes(features)
-        if diabetes_probability is not None:
-            st.success(f'Diabetes Risk: {diabetes_probability*100:.2f}%')
+        diabetes_prediction = predict_diabetes(features)
+        result = 'Diabetes Detected' if diabetes_prediction[0] == 1 else 'No Diabetes'
+        st.success(f'Diabetes Prediction: {result}')
 
     if st.button('Predict Heart Disease'):
-        heart_probability = predict_heart_disease(features)
-        if heart_probability is not None:
-            st.success(f'Heart Disease Risk: {heart_probability*100:.2f}%')
+        heart_prediction = predict_heart_disease(features)
+        result = 'Heart Disease Detected' if heart_prediction[0] == 1 else 'No Heart Disease'
+        st.success(f'Heart Disease Prediction: {result}')
 
 if __name__ == '__main__':
     main()
+    
+    
+    
